@@ -1,0 +1,9 @@
+.boxshadow {
+    box-shadow: 0 -5px 8px #888888;
+}
+
+li:hover {
+    transform: scale(1);
+    transition: all 1s ease;
+    z-index: 100;
+}

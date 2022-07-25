@@ -11887,4 +11887,8 @@ textarea.form-control-lg {
   }
 }
 
+.border {
+  border: 1px solid black;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
