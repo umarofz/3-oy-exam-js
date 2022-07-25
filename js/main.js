@@ -15,14 +15,12 @@ imgWrapper.classList.add("text-center")
 
 moviesBtn.addEventListener("click", function() {
     moviesItems(moviesSliced)
-    
-    // logo.src = "https://w7.pngwing.com/pngs/327/703/png-transparent-cinema-film-moveis-logo-film-art-film.png"
 })
 pokemonsBtn.addEventListener("click", function() {
     pokemonsItems(pokemonsSliced)
 })
 bothBtn.addEventListener("click", function() {
-    both(moviesItems(), pokemonsItems())
+    both(pokemonsItems(pokemonsSliced), moviesItems(moviesSliced))
 })
 clearBtn.addEventListener("click", function() {
     elList.innerHTML = null;
@@ -53,36 +51,38 @@ function moviesItems(movies) {
             let bookmark = document.createElement("button");
             let info = document.createElement("button");
             newLi.appendChild(img);
-            newLi.appendChild(h3);
-            newLi.appendChild(bigDiv);
-            bigDiv.appendChild(p1);
-            bigDiv.appendChild(p2);
-            bigDiv.appendChild(p3);
-            bigDiv.appendChild(div);
-            div.appendChild(ytLink);
-            div.appendChild(bookmark);
-            div.appendChild(info);
             img.src = item.ImageURL;
-            h3.textContent = item.Title;
-            p1.textContent = item.Categories;
-            p2.textContent = item.imdb_rating;
-            p3.textContent = item.movie_year;
-            ytLink.textContent = ["Trailer"];
-            bookmark.textContent = ["Bookmark"];
-            info.textContent = ["More Info"];
-            img.style.width = "100%";
+            img.classList.add("w-100")
             img.height = 350;
+            newLi.appendChild(h3);
+            h3.textContent = item.Title;
             h3.classList.add("bg-primary", "text-white", "text-center", "d-flex", "align-items-center", "justify-content-center", "m-0", "mb-2")
             h3.style.height = "70px";
-            p1.classList.add("m-0", "fw-semibold", "text-center")
-            p2.classList.add("m-0", "fw-bold", "text-center")
-            p3.classList.add("m-0", "fw-bold", "text-center", "mb-2")
-            ytLink.classList.add("col-4", "border-danger", "text-danger", "rounded-1")
-            bookmark.classList.add("col-4", "border-success", "text-success", "rounded-1")
-            info.classList.add("col-4", "border-primary", "text-primary", "rounded-1")
+            newLi.appendChild(bigDiv);
             bigDiv.classList.add("p-3")
+            bigDiv.appendChild(p1);
+            p1.classList.add("m-0", "fw-semibold", "text-center")
+            p1.textContent = item.Categories;
+            bigDiv.appendChild(p2);
+            p2.textContent = item.imdb_rating;
+            p2.classList.add("m-0", "fw-bold", "text-center")
+            bigDiv.appendChild(p3);
+            p3.classList.add("m-0", "fw-bold", "text-center", "mb-2")
+            p3.textContent = item.movie_year;
+            bigDiv.appendChild(div);
+            ytLink.textContent = ["Trailer"];
+            div.appendChild(ytLink);
+            div.appendChild(bookmark);
+            ytLink.classList.add("col-4", "border-danger", "text-danger", "rounded-1")
+            div.appendChild(info);
+            info.textContent = ["More Info"];
+            info.classList.add("col-4", "border-primary", "text-primary", "rounded-1")
+            bookmark.textContent = ["Bookmark"];
+            bookmark.classList.add("col-4", "border-success", "text-success", "rounded-1")
         }
     }
+
+    return movies
 }
 
 function pokemonsItems(pokemons) {
@@ -98,6 +98,7 @@ function pokemonsItems(pokemons) {
         let newLi = document.createElement("li")
         elList.appendChild(newLi)
         newLi.classList.add("card", "col-3", "text-center", "mb-4", "boxshadow")
+        newLi.height = 350;
         
         let img = document.createElement("img")
         img.src = item.img
@@ -116,8 +117,9 @@ function pokemonsItems(pokemons) {
         let p3 = document.createElement("h5")
         p3.textContent = item.height
         newLi.appendChild(p3)
-        
     }
+    return pokemons
+
 }
 
 function both(array1, array2) {
@@ -125,3 +127,5 @@ function both(array1, array2) {
 
     return newArray
 }
+
+    
