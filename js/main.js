@@ -1,12 +1,16 @@
 let body = document.querySelector("body")
+let imgWrapper = document.createElement("div")
+body.appendChild(imgWrapper)
 let moviesBtn = document.querySelector(".movies");
 let pokemonsBtn = document.querySelector(".pokemons");
 let bothBtn = document.querySelector(".both");
 let clearBtn = document.querySelector(".clear");
-let elList = document.querySelector(".list1");
 let moviesSliced = movies.slice(0, 20);
 let pokemonsSliced = pokemons.slice(0, 20);
+let elList = document.createElement("ul");
+body.appendChild(elList)
 elList.classList.add("list-unstyled", "d-flex", "flex-wrap", "w-75", "mx-auto", "mt-5");
+imgWrapper.classList.add("text-center")
 
 
 moviesBtn.addEventListener("click", function() {
@@ -23,14 +27,20 @@ bothBtn.addEventListener("click", function() {
 clearBtn.addEventListener("click", function() {
     elList.innerHTML = null;
     body.style = null
+    imgWrapper.innerHTML = null
 })
 
 function moviesItems(movies) {
-    for (let i = 0; i < movies.length; i++) {
+    let logoMovies = document.createElement("img")
+    imgWrapper.appendChild(logoMovies)
+    logoMovies.src = "https://w7.pngwing.com/pngs/327/703/png-transparent-cinema-film-moveis-logo-film-art-film.png"
+    logoMovies.width = 400
+    logoMovies.height = 200
+    for (const item of movies) {
         let newLi = document.createElement("li");
         elList.appendChild(newLi);
         newLi.classList.add("card", "col-3")
-        
+
         for (let j = 0; j < 1; j++) {
             let img = document.createElement("img");
             let div = document.createElement("div");
@@ -52,11 +62,11 @@ function moviesItems(movies) {
             div.appendChild(ytLink);
             div.appendChild(bookmark);
             div.appendChild(info);
-            img.src = movies[i]["ImageURL"];
-            h3.textContent = movies[i]["Title"];
-            p1.textContent = movies[i]["Categories"];
-            p2.textContent = movies[i]["imdb_rating"];
-            p3.textContent = movies[i]["movie_year"];
+            img.src = item.ImageURL;
+            h3.textContent = item.Title;
+            p1.textContent = item.Categories;
+            p2.textContent = item.imdb_rating;
+            p3.textContent = item.movie_year;
             ytLink.textContent = ["Trailer"];
             bookmark.textContent = ["Bookmark"];
             info.textContent = ["More Info"];
@@ -72,18 +82,23 @@ function moviesItems(movies) {
             info.classList.add("col-4", "border-primary", "text-primary", "rounded-1")
             bigDiv.classList.add("p-3")
         }
-        
     }
 }
 
 function pokemonsItems(pokemons) {
+    imgWrapper.innerHTML = null
+    let logoPokemon = document.createElement("img")
+    imgWrapper.appendChild(logoPokemon)
+    logoPokemon.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png"
+    logoPokemon.width = 400
+    logoPokemon.height = 200
     body.style.backgroundColor = "#ffc107"
     elList.innerHTML = null
     for (let item of pokemons) {
         let newLi = document.createElement("li")
         elList.appendChild(newLi)
         newLi.classList.add("card", "col-3", "text-center", "mb-4", "boxshadow")
-
+        
         let img = document.createElement("img")
         img.src = item.img
         img.width = 200
